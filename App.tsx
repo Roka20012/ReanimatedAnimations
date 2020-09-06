@@ -1,7 +1,38 @@
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import BoxAnimations from './app/BoxAnimations';
+import { BoxAnimations, ClockAnimations } from './app/index';
+import { HomeScreen } from './app/screens';
 
-const App = () => <BoxAnimations />;
+export type RootStackParamList = {
+    HomeScreen: undefined;
+    BoxAnimationScreen: undefined;
+    ClockAnimationScreen: undefined;
+};
+
+const Stack = createStackNavigator();
+
+const App = () => (
+    <NavigationContainer>
+        <Stack.Navigator initialRouteName="HomeScreen">
+            <Stack.Screen
+                name="HomeScreen"
+                options={{ title: 'Home' }}
+                component={HomeScreen}
+            />
+            <Stack.Screen
+                name="BoxAnimationScreen"
+                options={{ title: 'Box Animation' }}
+                component={BoxAnimations}
+            />
+            <Stack.Screen
+                name="ClockAnimationScreen"
+                options={{ title: 'Clock Animation' }}
+                component={ClockAnimations}
+            />
+        </Stack.Navigator>
+    </NavigationContainer>
+);
 
 export default App;

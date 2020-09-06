@@ -184,9 +184,9 @@ const BoxAnimations = () => {
     }, [value]);
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <StatusBar barStyle="light-content" />
-            <View>
+            <View style={styles.blocksContainer}>
                 <Animated.View style={[styles.box, animatedStyle]} />
                 <Animated.View style={[styles.box, animatedStyle2]} />
                 <Animated.View style={[styles.box, animatedStyle3]} />
@@ -196,28 +196,32 @@ const BoxAnimations = () => {
                 <Animated.View style={[styles.box, animatedStyle7]} />
                 <Animated.View style={[styles.box, animatedStyle8]} />
             </View>
-
-            <Text style={styles.buttonText}>START ENGINE</Text>
-            <Switch
-                style={{ alignSelf: 'center', bottom: -200 }}
-                trackColor={{
-                    true: 'cornflowerblue',
-                    false: 'black',
-                }}
-                ios_backgroundColor="#777"
-                value={value}
-                onValueChange={setValue}
-            />
-        </SafeAreaView>
+            <View style={styles.bottomViewContainer}>
+                <Text style={styles.buttonText}>START ENGINE</Text>
+                <Switch
+                    style={{ alignSelf: 'center' }}
+                    trackColor={{
+                        true: 'cornflowerblue',
+                        false: 'black',
+                    }}
+                    ios_backgroundColor="#777"
+                    value={value}
+                    onValueChange={setValue}
+                />
+            </View>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        borderWidth: 1,
         flex: 1,
         justifyContent: 'center',
         backgroundColor: '#ee5555',
+    },
+    blocksContainer: {
+        flex: 1,
+        justifyContent: 'flex-end',
     },
     button: {
         position: 'absolute',
@@ -237,22 +241,24 @@ const styles = StyleSheet.create({
 
         elevation: 5,
     },
+    bottomViewContainer: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        bottom: 21,
+    },
     buttonText: {
+        marginBottom: 11,
         textAlign: 'center',
         color: 'white',
         fontWeight: 'bold',
-        position: 'absolute',
         alignSelf: 'center',
-        bottom: 39,
     },
     box: {
         width: 40,
         height: 40,
         borderRadius: 40 / 2,
-
         alignSelf: 'center',
         backgroundColor: 'white',
-        // backgroundColor: 'cornflowerblue',
     },
 });
 
