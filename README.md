@@ -7,20 +7,20 @@
   - run ```npm run [ios | android]```
 
 ## **Roadmap**
-- [x] [Simple loader animation](#Simple-Loader)
-- [x] [Clock](#Clock)
-- [x] [Dot's Loader](#Dot's-Loader)
+- [x] [Simple loader animation](#simple-Loader)
+- [x] [Clock](#clock)
+- [x] [Dot's Loader](#dots-Loader)
 - [ ] [React logo](#React-logo)
-- [ ] [Another do'ts loader](#Another-dot's-Loader)
-- [ ] [Circle menu animation](#Circle-menu-animation)
-- [ ] [Fingers loading animation](#Fingers-loading-animation)
-- [ ] [Switch animation](#Switch-animation)
+- [ ] [Another do'ts loader](#another-dots-loader)
+- [ ] [Circle menu animation](#circle-menu-animation)
+- [ ] [Fingers loading animation](#fingers-loading-animation)
+- [ ] [Switch animation](#switch-animation)
 
 #### **Simple Loader**
-![simple loader](./gifs/loader.gif)
+![simple-loader](./gifs/loader.gif)
 
 #### **Clock**
 ![clock](./gifs/clock.gif)
 
 #### **Dot's Loader**
-![dot's loader](./gifs/dots_loader.gif)
+![dots-loader](./gifs/dots_loader.gif)
