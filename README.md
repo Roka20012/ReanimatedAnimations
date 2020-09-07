@@ -1,5 +1,11 @@
 # **Learn Reanimated 2 -> [documentation](https://docs.swmansion.com/react-native-reanimated/)**
 
+### Commands to run this project 
+- open terminal
+- in root directory of this project
+  - run ```npm install```
+  - run ```npm run [ios | android]```
+
 ## **Roadmap**
 - [x] [Simple loader animation](#Simple-Loader)
 - [x] [Clock](#Clock)
