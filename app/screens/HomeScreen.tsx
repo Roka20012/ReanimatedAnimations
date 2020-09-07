@@ -14,6 +14,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         navigation.navigate('BoxAnimationScreen');
     const goToClockAnimationScreen = () =>
         navigation.navigate('ClockAnimationScreen');
+    const goToDotsLoaderScreen = () => navigation.navigate('DotsLoaderScreen');
 
     return (
         <View>
@@ -22,6 +23,9 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
             </Pressable>
             <Pressable style={styles.button} onPress={goToClockAnimationScreen}>
                 <Text style={styles.buttonText}>Clock animation</Text>
+            </Pressable>
+            <Pressable style={styles.button} onPress={goToDotsLoaderScreen}>
+                <Text style={styles.buttonText}>Dots loader animation</Text>
             </Pressable>
         </View>
     );
