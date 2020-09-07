@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
         height: 21,
         marginHorizontal: 13,
         borderRadius: 21 / 2,
-        backgroundColor: 'red',
     },
     dot1: { backgroundColor: '#0F9D58' },
     dot2: { backgroundColor: '#F4B400' },
