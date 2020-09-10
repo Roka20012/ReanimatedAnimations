@@ -17,6 +17,21 @@ import Animated, {
     delay,
 } from 'react-native-reanimated';
 
+function updateAnimatedValue(delayTime: number) {
+    'worklet';
+    return delay(
+        delayTime,
+        repeat(
+            sequence(
+                withTiming(0.3, { duration: 600 }),
+                withTiming(1, { duration: 200 })
+            ),
+            -1,
+            true
+        )
+    );
+}
+
 const BoxAnimations = () => {
     const box1 = useSharedValue(1);
     const box2 = useSharedValue(1);
@@ -94,93 +109,15 @@ const BoxAnimations = () => {
             cancelAnimation(box8);
             return;
         }
-
-        box1.value = repeat(
-            sequence(
-                withTiming(0.3, { duration: 600 }),
-                withTiming(1, { duration: 200 })
-            ),
-            -1,
-            true
-        );
-
-        box2.value = delay(
-            100,
-            repeat(
-                sequence(
-                    withTiming(0.3, { duration: 600 }),
-                    withTiming(1, { duration: 200 })
-                ),
-                -1,
-                true
-            )
-        );
-        box3.value = delay(
-            200,
-            repeat(
-                sequence(
-                    withTiming(0.3, { duration: 600 }),
-                    withTiming(1, { duration: 200 })
-                ),
-                -1,
-                true
-            )
-        );
-        box4.value = delay(
-            300,
-            repeat(
-                sequence(
-                    withTiming(0.3, { duration: 600 }),
-                    withTiming(1, { duration: 200 })
-                ),
-                -1,
-                true
-            )
-        );
-        box5.value = delay(
-            400,
-            repeat(
-                sequence(
-                    withTiming(0.3, { duration: 600 }),
-                    withTiming(1, { duration: 200 })
-                ),
-                -1,
-                true
-            )
-        );
-        box6.value = delay(
-            500,
-            repeat(
-                sequence(
-                    withTiming(0.3, { duration: 600 }),
-                    withTiming(1, { duration: 200 })
-                ),
-                -1,
-                true
-            )
-        );
-        box7.value = delay(
-            600,
-            repeat(
-                sequence(
-                    withTiming(0.3, { duration: 600 }),
-                    withTiming(1, { duration: 200 })
-                ),
-                -1,
-                true
-            )
-        );
-        box8.value = delay(
-            700,
-            repeat(
-                sequence(
-                    withTiming(0.3, { duration: 600 }),
-                    withTiming(1, { duration: 200 })
-                ),
-                -1,
-                true
-            )
-        );
+        
+        box1.value = updateAnimatedValue(0);
+        box2.value = updateAnimatedValue(100);
+        box3.value = updateAnimatedValue(200);
+        box4.value = updateAnimatedValue(300);
+        box5.value = updateAnimatedValue(400);
+        box6.value = updateAnimatedValue(500);
+        box7.value = updateAnimatedValue(600);
+        box8.value = updateAnimatedValue(700);
     }, [value]);
 
     return (

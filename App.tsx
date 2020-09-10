@@ -2,11 +2,17 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { BoxAnimations, ClockAnimations, DotsLoader } from './app/index';
+import {
+    ClockAnimations,
+    BoxAnimations,
+    DotsLoader,
+    HandLoader,
+} from './app/index';
 import { HomeScreen } from './app/screens';
 
 export type RootStackParamList = {
     HomeScreen: undefined;
+    HandLoaderScreen: undefined;
     DotsLoaderScreen: undefined;
     BoxAnimationScreen: undefined;
     ClockAnimationScreen: undefined;
@@ -36,6 +42,11 @@ const App = () => (
                 name="DotsLoaderScreen"
                 options={{ title: 'Dots Loader Animation' }}
                 component={DotsLoader}
+            />
+            <Stack.Screen
+                name="HandLoaderScreen"
+                options={{ title: 'Hand Loader Animation' }}
+                component={HandLoader}
             />
         </Stack.Navigator>
     </NavigationContainer>
