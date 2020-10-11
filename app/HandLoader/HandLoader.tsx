@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, StyleProp, ViewStyle, View } from 'react-native';
 import Animated, {
+    useAnimatedStyle,
+    useSharedValue,
     withSpring,
     withTiming,
-    useSharedValue,
-    useAnimatedStyle,
+    sequence,
+    repeat,
+    delay,
 } from 'react-native-reanimated';
 
 type FingerAnimatedStyle = {
@@ -12,10 +15,10 @@ type FingerAnimatedStyle = {
 };
 
 export type FingerProps = {
-    style?: StyleProp<ViewStyle>;
     fingerStyle: Animated.AnimateStyle<FingerAnimatedStyle>;
     lineStyle: Animated.AnimateStyle<FingerAnimatedStyle>;
     nailStyle: Animated.AnimateStyle<FingerAnimatedStyle>;
+    style?: StyleProp<ViewStyle>;
 };
 
 const Finger = ({ style, fingerStyle, lineStyle, nailStyle }: FingerProps) => {
@@ -30,30 +33,102 @@ const Finger = ({ style, fingerStyle, lineStyle, nailStyle }: FingerProps) => {
     );
 };
 
-function updateAnimatedValue() {
+function updateAnimatedValue(delayTime: number) {
     'worklet';
+    return delay(
+        delayTime,
+        repeat(
+            sequence(
+                withTiming(-50, { duration: 400 }),
+                withTiming(0),
+                withTiming(0, { duration: 500 })
+            ),
+            -1,
+            true
+        )
+    );
+}
+
+function updateAnimatedStyle(
+    value: Animated.SharedValue<number>,
+    height?: number,
+    isLine?: boolean
+) {
+    'worklet';
+
+    if (height) {
+        return useAnimatedStyle(() => ({
+            transform: [{ translateY: value.value }],
+            height: height + value.value / 2,
+        }));
+    }
+
+    if (isLine) {
+        return useAnimatedStyle(() => ({
+            transform: [{ translateY: value.value / 3 }],
+        }));
+    }
+
+    return useAnimatedStyle(() => ({
+        transform: [{ translateY: value.value / 5 }],
+    }));
 }
 
 const HandLoader = () => {
     const fingerValue = useSharedValue(0);
+    const fingerValue2 = useSharedValue(0);
+    const fingerValue3 = useSharedValue(0);
+    const fingerValue4 = useSharedValue(0);
+    const thumbValue = useSharedValue(0);
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+        fingerValue.value = updateAnimatedValue(0);
+        fingerValue2.value = updateAnimatedValue(50);
+        fingerValue3.value = updateAnimatedValue(100);
+        fingerValue4.value = updateAnimatedValue(150);
+        thumbValue.value = updateAnimatedValue(100);
+    }, []);
 
-    const fingerStyle = useAnimatedStyle(() => ({
-        transform: [
-            {
-                translateY: withSpring(-100),
-            },
-        ],
-    }));
+    const fingerStyle = updateAnimatedStyle(fingerValue, 108);
+    const nailStyle = updateAnimatedStyle(fingerValue);
+    const lineStyle = updateAnimatedStyle(fingerValue, undefined, true);
+    const fingerStyle2 = updateAnimatedStyle(fingerValue2, 126);
+    const nailStyle2 = updateAnimatedStyle(fingerValue2);
+    const lineStyle2 = updateAnimatedStyle(fingerValue2, undefined, true);
+    const fingerStyle3 = updateAnimatedStyle(fingerValue3, 142);
+    const nailStyle3 = updateAnimatedStyle(fingerValue3);
+    const lineStyle3 = updateAnimatedStyle(fingerValue3, undefined, true);
+    const fingerStyle4 = updateAnimatedStyle(fingerValue4, 120);
+    const nailStyle4 = updateAnimatedStyle(fingerValue4);
+    const lineStyle4 = updateAnimatedStyle(fingerValue4, undefined, true);
+    const thumbStyle = updateAnimatedStyle(thumbValue, 40);
 
     return (
         <View style={styles.container}>
-            <Finger fingerStyle={fingerStyle} />
-            <Finger style={styles.finger2} fingerStyle={fingerStyle} />
-            <Finger style={styles.finger3} fingerStyle={fingerStyle} />
-            <Finger style={styles.finger4} fingerStyle={fingerStyle} />
-            <View style={styles.thumb} />
+            <Finger
+                fingerStyle={fingerStyle}
+                nailStyle={nailStyle}
+                lineStyle={lineStyle}
+            />
+            <Finger
+                style={styles.finger2}
+                fingerStyle={fingerStyle2}
+                nailStyle={nailStyle2}
+                lineStyle={lineStyle2}
+            />
+            <Finger
+                style={styles.finger3}
+                fingerStyle={fingerStyle3}
+                nailStyle={nailStyle3}
+                lineStyle={lineStyle3}
+            />
+            <Finger
+                style={styles.finger4}
+                fingerStyle={fingerStyle4}
+                nailStyle={nailStyle4}
+                lineStyle={lineStyle4}
+            />
+            <Animated.View style={[styles.thumb, thumbStyle]} />
         </View>
     );
 };
