@@ -10,6 +10,7 @@
 - [x] [Simple loader animation](#simple-Loader)
 - [x] [Clock](#clock)
 - [x] [Dot's Loader](#dots-Loader)
+- [x] [Handle Loader](#handle-Loader)
 - [ ] [React logo](#React-logo)
 - [ ] [Another do'ts loader](#another-dots-loader)
 - [ ] [Circle menu animation](#circle-menu-animation)
@@ -24,3 +25,6 @@
 
 #### **Dot's Loader**
 ![dots-loader](./gifs/dots_loader.gif)
+
+#### **Handle Loader**
+![handle-loader](./gifs/handle_loader.gif)
